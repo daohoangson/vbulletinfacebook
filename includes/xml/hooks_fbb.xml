@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<hooks>
+	<hooktype type="Facebook Bridge Global">
+		<hook>fbb_init_startup</hook>
+		<hook>fbb_update_profile_box</hook>
+		<hook>fbb_update_profile_box_forums_stat</hook>
+		<hook>fbb_update_log</hook>
+	</hooktype>
+</hooks>

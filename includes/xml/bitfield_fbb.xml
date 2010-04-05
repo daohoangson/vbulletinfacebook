@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<bitfields product="vbulletin">
+	<bitfielddefs>
+		<group name="fbb">
+			<group name="various_elements">
+				<bitfield name="fbb_navbar_connect_button">8</bitfield>
+				<bitfield name="fbb_postbit_imicons">1</bitfield>
+				<bitfield name="fbb_postbit_share_button">4</bitfield>
+				<bitfield name="fbb_profileblock_contactinfo_imcons">2</bitfield>
+			</group>
+		</group>
+	</bitfielddefs>
+</bitfields>
