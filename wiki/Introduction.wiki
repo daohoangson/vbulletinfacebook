@@ -1,7 +1,7 @@
 #labels Featured
 #Basic information about using the product
 
-=Yay! Another Facebook Bridge 3.2.3=
+=Yay! Another Facebook Bridge 3.2.5=
 _Tested to work with vBulletin 3.7.x and 3.8.x (3.6.x requires some manual edit, contact me for detail instruction)
 Tested to work with vBulletin 4.0 (use different .xml import file)
 *Please note*: this product requires PHP5. If you get weird error messages, please check if you PHP version is still 4 (which is very old and you should change to PHP5 as soon as possible). Also, MySQL 5 is strongly recommended_
