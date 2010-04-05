@@ -1,11 +1,11 @@
 <?php
 /*======================================================================*\
 || #################################################################### ||
-|| # Yay! Another Facebook Bridge 3.2
-|| # Coded by SonDH
+|| # Yay! Another Facebook Bridge 3.3
+|| # Coded by Dao Hoang Son
 || # Contact: daohoangson@gmail.com
-|| # Check out my page: http://facebook.com/sondh
-|| # Last Updated: 21:13 Jan 22nd, 2010
+|| # Check out my hompage: http://daohoangson.com
+|| # Last Updated: 04:01 Apr 06th, 2010
 || #################################################################### ||
 \*======================================================================*/
 switch ($setting['optioncode']) {
@@ -106,6 +106,11 @@ switch ($setting['optioncode']) {
 		
 		$handled = true;
 	
+		break;
+	//3.3
+	case 'fb_username_patterns':
+		print_input_row($description, $name, $setting['value']);
+		$handled = true;
 		break;
 }
 ?>

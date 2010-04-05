@@ -1,11 +1,11 @@
 <?php
 /*======================================================================*\
 || #################################################################### ||
-|| # Yay! Another Facebook Bridge 3.2.2 - Bugs fixed
-|| # Coded by SonDH
+|| # Yay! Another Facebook Bridge 3.3
+|| # Coded by Dao Hoang Son
 || # Contact: daohoangson@gmail.com
-|| # Check out my page: http://facebook.com/sondh
-|| # Last Updated: 14:44 Mar 20th, 2010
+|| # Check out my hompage: http://daohoangson.com
+|| # Last Updated: 04:01 Apr 06th, 2010
 || #################################################################### ||
 \*======================================================================*/
 //adding/removing this contants should be reflexed in fbb_admin.php
@@ -905,7 +905,7 @@ function strip_bbcode_quick($message) {
 	//this is another way which can get more benefit (a little bit slower)
 	global $vbulletin;
 	require_once(DIR . '/includes/class_bbcode_alt.php');
-	$plaintext_parser =& new vB_BbCodeParser_PlainText($vbulletin, fetch_tag_list());
+	$plaintext_parser = new vB_BbCodeParser_PlainText($vbulletin, fetch_tag_list());
 	$plaintext_parser->set_parsing_language($vbulletin->userinfo['languageid']);
 	$message = $plaintext_parser->parse($message, 'privatemessage');
 	
@@ -920,7 +920,7 @@ function getWords($message,$upper_limit = 75) {
 	$message = preg_replace('/\[img\](.*?)\[\/img\]/i','',$message); //remove [IMG] tags
 	
 	require_once(DIR . '/includes/class_bbcode_alt.php');
-	$plaintext_parser =& new vB_BbCodeParser_PlainText($vbulletin, fetch_tag_list());
+	$plaintext_parser = new vB_BbCodeParser_PlainText($vbulletin, fetch_tag_list());
 	$plaintext_parser->set_parsing_language($vbulletin->userinfo['languageid']);
 	$message = $plaintext_parser->parse($message, 'privatemessage');
 	

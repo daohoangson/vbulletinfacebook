@@ -1,11 +1,11 @@
 <?php
 /*======================================================================*\
 || #################################################################### ||
-|| # Yay! Another Facebook Bridge 3.2.2 - Bugs fixed
-|| # Coded by SonDH
+|| # Yay! Another Facebook Bridge 3.3
+|| # Coded by Dao Hoang Son
 || # Contact: daohoangson@gmail.com
-|| # Check out my page: http://facebook.com/sondh
-|| # Last Updated: 14:44 Mar 20th, 2010
+|| # Check out my hompage: http://daohoangson.com
+|| # Last Updated: 04:01 Apr 06th, 2010
 || #################################################################### ||
 \*======================================================================*/
 if ($oldsetting['varname'] == 'fbb_apikey'
@@ -84,5 +84,26 @@ if ($oldsetting['varname'] == 'fbb_comment_as_reply'
 			,ADD COLUMN `fblastcomment_sync` int(11) DEFAULT '0'
 	");
 	$vbulletin->db->show_errors();
+}
+//3.3
+if ($oldsetting['optioncode'] == 'fb_username_patterns') {
+	$patterns = explode(' ',$newvalue);
+	$new_patterns = array();
+	$fbkeys = array('[username]','[uid]','[fname]','[lname]','[name]');
+	foreach ($patterns as $pattern) {
+		$pattern = trim($pattern);
+		if ($pattern) {
+			$found = false;
+			foreach ($fbkeys as $fbkey) {
+				if (strpos($pattern,$fbkey) !== false) {
+					$found = true;
+					break;
+				}
+			}
+			if (!$found) print_stop_message('fbb_username_pattern_invalid_x',$pattern,implode(', ',$fbkeys));
+			$new_patterns[] = $pattern;
+		}
+	}
+	$newvalue = implode(' ',$new_patterns);
 }
 ?>
