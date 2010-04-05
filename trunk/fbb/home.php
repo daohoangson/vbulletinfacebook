@@ -1,11 +1,11 @@
 <?php
 /*======================================================================*\
 || #################################################################### ||
-|| # Yay! Another Facebook Bridge 3.2.3
-|| # Coded by SonDH
+|| # Yay! Another Facebook Bridge 3.3
+|| # Coded by Dao Hoang Son
 || # Contact: daohoangson@gmail.com
-|| # Check out my page: http://facebook.com/sondh
-|| # Last Updated: 19:54 Mar 29th, 2010
+|| # Check out my hompage: http://daohoangson.com
+|| # Last Updated: 04:01 Apr 06th, 2010
 || #################################################################### ||
 \*======================================================================*/
 // ####################### SET PHP ENVIRONMENT ###########################
@@ -248,8 +248,9 @@ if ($_REQUEST['do'] == 'update_log') {
 }
 
 if (empty($_REQUEST['do'])) {
-	if ($vbulletin->fbb['config']['auto_register']
-		OR $vbulletin->fbb['config']['auto_login']) {
+	if (($vbulletin->fbb['config']['auto_register']
+		OR $vbulletin->fbb['config']['auto_login'])
+		AND empty($vbulletin->userinfo['userid'])) {
 		$vbulletin->fbb['runtime']['javascript_needed'] = true; //we need them now!
 		
 		//Load script
@@ -281,8 +282,9 @@ if (empty($_REQUEST['do'])) {
 		} else {
 			eval('print_output("' . fetch_template('fbb_landing_page') . '");');
 		}
-	} else {
-		print_no_permission();
 	}
+	
+	$vbulletin->url = $vbulletin->options['bburl'] . '/' . $vbulletin->options['forumhome'] . '.php';
+	eval(standard_redirect('Hi'));
 }
 ?>

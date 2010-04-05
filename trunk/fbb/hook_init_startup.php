@@ -1,11 +1,11 @@
 <?php
 /*======================================================================*\
 || #################################################################### ||
-|| # Yay! Another Facebook Bridge 3.2
-|| # Coded by SonDH
+|| # Yay! Another Facebook Bridge 3.3
+|| # Coded by Dao Hoang Son
 || # Contact: daohoangson@gmail.com
-|| # Check out my page: http://facebook.com/sondh
-|| # Last Updated: 21:13 Jan 22nd, 2010
+|| # Check out my hompage: http://daohoangson.com
+|| # Last Updated: 04:01 Apr 06th, 2010
 || #################################################################### ||
 \*======================================================================*/
 ######################################## CONFIGURATION SECTION ########################################
@@ -60,8 +60,11 @@ $fbb = array(
 		'secret' => $vbulletin->options['fbb_secret'],
 		
 		'auto_login' => $vbulletin->options['fbb_template_auto_login']?true:false,
+		'activated_system_wide' => $vbulletin->options['fbb_activated_system_wide']?true:false,
 		'cookie_last_checked_name' => 'fbb_last_checked',
 		'cookie_last_checked_timeout' => 6*60*60, //six hours before checking again
+		
+		'register_on_the_fly' => array(), //place holder, will be processed below
 		
 		'auto_register' => $vbulletin->options['fbb_template_auto_register']?true:false,
 		'accept_proxied_email' => $vbulletin->options['fbb_auto_register_accept_proxied_email']?true:false,
@@ -253,6 +256,12 @@ $fbb = array(
 		),
 	),
 );
+
+//This line is long, I know
+//It just process the option string (fbb_register_on_the_fly) to populate valid pattern into our config[register_on_the_fly]
+//I want to save 2 lines of code and it turned out that I wasted 3 lines of comment
+//God blesses me! (WTC, this is the 4th line!)
+foreach (explode(' ',$vbulletin->options['fbb_register_on_the_fly']) as $pattern) if ($pattern = trim($pattern)) $fbb['config']['register_on_the_fly'][] = $pattern;
 
 $vbulletin->fbb =& $fbb;
 

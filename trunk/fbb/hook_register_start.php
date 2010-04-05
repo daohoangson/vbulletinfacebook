@@ -1,11 +1,11 @@
 <?php
 /*======================================================================*\
 || #################################################################### ||
-|| # Yay! Another Facebook Bridge 3.2.3
-|| # Coded by SonDH
+|| # Yay! Another Facebook Bridge 3.3
+|| # Coded by Dao Hoang Son
 || # Contact: daohoangson@gmail.com
-|| # Check out my page: http://facebook.com/sondh
-|| # Last Updated: 19:54 Mar 29th, 2010
+|| # Check out my hompage: http://daohoangson.com
+|| # Last Updated: 04:01 Apr 06th, 2010
 || #################################################################### ||
 \*======================================================================*/
 if (
@@ -47,6 +47,11 @@ if (
 		$fbuid = fb_users_getLoggedInUser();
 		if (!fb_isErrorCode($fbuid)) {
 		
+			/*
+			IF YOU CHANGE THIS, CONSIDER TO MAKE THE APPROPRIATE CHANGE TO HOOK_GLOBAL_START.PHP TOO
+			THEY ARE PRETTY MUCH THE SAME SHIT!
+			*/
+			
 			$fields = array(
 				'uid',
 				'first_name',
@@ -122,7 +127,16 @@ if (
 					'year'  => 1970
 				));
 			}
-			DEVDEBUG("Birthday = $birthday[1]-$birthday[0]-$birthday[2] ($fbuserinfo[birthday_date])");
+			
+			//referrer
+			if ($vbulletin->GPC[COOKIE_PREFIX . 'referrerid']) {
+				// in case user visited a referrerid URI
+				if ($referrername = $db->query_first_slave("SELECT username FROM " . TABLE_PREFIX . "user WHERE userid = " . $vbulletin->GPC[COOKIE_PREFIX . 'referrerid'])) {
+					// fortunately we found the username
+					// set referrer now
+					$userdata->set('referrerid', $referrername['username']);
+				}
+			}
 			
 			//set email
 			if ($vbulletin->GPC['email'] OR $vbulletin->GPC['emailconfirm']) {
@@ -175,6 +189,11 @@ if (
 			($hook = vBulletinHook::fetch_hook('register_addmember_process')) ? eval($hook) : false;
 
 			$userdata->pre_save();
+			
+			/*
+			IF YOU CHANGE THIS, CONSIDER TO MAKE THE APPROPRIATE CHANGE TO HOOK_GLOBAL_START.PHP TOO
+			THEY ARE PRETTY MUCH THE SAME SHIT!
+			*/
 			
 			// check for errors
 			if (!empty($userdata->errors)) {
@@ -288,6 +307,11 @@ if (
 							vbmail($email, $subject, $message);
 						}
 					}
+					
+					/*
+					IF YOU CHANGE THIS, CONSIDER TO MAKE THE APPROPRIATE CHANGE TO HOOK_GLOBAL_START.PHP TOO
+					THEY ARE PRETTY MUCH THE SAME SHIT!
+					*/
 
 					($hook = vBulletinHook::fetch_hook('register_addmember_complete')) ? eval($hook) : false;
 
@@ -303,6 +327,12 @@ if (
 						eval(print_standard_redirect(fetch_error('fbb_registration_complete',$username,$vbulletin->session->vars['sessionurl'],$vbulletin->options['bburl'] . '/' . $vbulletin->options['forumhome'] . '.php'), false, true));
 						//eval(standard_error(fetch_error('registration_complete', $username, $vbulletin->session->vars['sessionurl'], $vbulletin->options['bburl'] . '/' . $vbulletin->options['forumhome'] . '.php'), '', false));
 					}
+					
+					/*
+					IF YOU CHANGE THIS, CONSIDER TO MAKE THE APPROPRIATE CHANGE TO HOOK_GLOBAL_START.PHP TOO
+					THEY ARE PRETTY MUCH THE SAME SHIT!
+					<can't say this enough>
+					*/
 				}
 			}
 		}
