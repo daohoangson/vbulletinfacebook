@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<navgroups product="fbb">
+	<navgroup phrase="fbb" hr="true" displayorder="17">
+		<navoption displayorder="1">
+			<text>Edit Settings</text>
+			<link>options.php?dogroup=fbb&amp;sdo=options</link>
+		</navoption>
+		<navoption displayorder="2">
+			<phrase>fbb_migration</phrase>
+			<link>fbb_admin.php?do=migration</link>
+		</navoption>
+		<navoption displayorder="21">
+			<phrase>fbb_user_manager</phrase>
+			<link>fbb_admin.php?do=users</link>
+		</navoption>
+		<navoption displayorder="31">
+			<phrase>fbb_log</phrase>
+			<link>fbb_admin.php?do=log</link>
+		</navoption>
+		<navoption displayorder="50">
+			<phrase>fbb_send_notification</phrase>
+			<link>fbb_admin.php?do=send_notification</link>
+		</navoption>
+	</navgroup>
+</navgroups>
