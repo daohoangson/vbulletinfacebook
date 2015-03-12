@@ -1,0 +1,1 @@
+Provide an easy way for board administrators to administrate Facebook connections from their boards with various options. Also, make the user experiences as straightforward as possible. Everything is connected, isn't it?
